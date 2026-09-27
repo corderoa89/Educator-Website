@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical guide for educators and families supporting children's social-emotional learning and self-regulation across developmental stages.">
+  <title>Growing Together | Social-Emotional Learning</title>
+  <style>
+    :root {
+      --ink: #173042;
+      --muted: #536774;
+      --paper: #fffdf8;
+      --white: #ffffff;
+      --teal: #176b68;
+      --teal-light: #e6f4f1;
+      --coral: #a84332;
+      --coral-light: #fff0eb;
+      --gold: #735311;
+      --gold-light: #fff5d9;
+      --blue-light: #edf4fc;
+      --line: #dce5e5;
+      --shadow: 0 12px 30px rgba(23, 48, 66, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: #075e78; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #d28d00;
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 1rem;
+      z-index: 10;
+      background: var(--white);
+      padding: .75rem 1rem;
+    }
+
+    .skip-link:focus { left: 1rem; }
+
+    .hero {
+      color: var(--white);
+      background: linear-gradient(125deg, #123f4d, #176b68 68%, #32857b);
+      padding: 4rem max(1.25rem, calc((100% - 1120px) / 2)) 3.5rem;
+    }
+
+    .hero-inner { max-width: 1120px; margin: auto; }
+
+    .eyebrow {
+      margin: 0 0 .6rem;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #c6eee2;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 1.14rem;
+      color: #e9f5f1;
+    }
+
+    .hero-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.15rem;
+      max-width: 850px;
+      border-left: 4px solid #f5c85c;
+      background: rgba(255,255,255,.10);
+      border-radius: 0 12px 12px 0;
+    }
+
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: auto;
+      padding: .65rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem 1rem;
+    }
+
+    nav a {
+      color: var(--ink);
+      font-size: .92rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: .35rem .25rem;
+    }
+
+    nav a:hover { color: var(--teal); text-decoration: underline; }
+
+    main {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin: 2rem auto 4rem;
+    }
+
+    section { scroll-margin-top: 5rem; margin: 3.2rem 0; }
+
+    h2 {
+      margin: 0 0 .8rem;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+
+    h3 { margin: 0 0 .55rem; line-height: 1.25; }
+    p { margin-top: .55rem; }
+    .section-intro { max-width: 830px; color: var(--muted); font-size: 1.06rem; }
+
+    .definition {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .panel, .stage-card, .strategy-card, .callout {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .panel { padding: 1.4rem; }
+    .panel h3 { color: var(--teal); }
+
+    .callout {
+      padding: 1.15rem 1.3rem;
+      border-left: 5px solid var(--teal);
+      background: var(--teal-light);
+      box-shadow: none;
+    }
+
+    .warm { border-left-color: var(--coral); background: var(--coral-light); }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.3rem;
+    }
+
+    .stage-card { overflow: hidden; }
+    .stage-card header { padding: 1.15rem 1.2rem; color: var(--white); }
+    .stage-card header p { margin: .35rem 0 0; color: rgba(255,255,255,.9); }
+    .stage-card .body { padding: 1.2rem; }
+    .early header { background: #176b68; }
+    .middle header { background: #725519; }
+    .teen header { background: #5a4c87; }
+
+    .age {
+      display: inline-block;
+      margin-bottom: .3rem;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .95;
+    }
+
+    ul { padding-left: 1.2rem; }
+    li { margin: .42rem 0; }
+    .label {
+      display: inline-block;
+      margin: 1rem 0 .3rem;
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+
+    .strategy-card {
+      padding: 1rem;
+      box-shadow: none;
+      background: #f8fbfa;
+    }
+
+    .strategy-card h4 { margin: 0 0 .4rem; font-size: 1rem; }
+    .strategy-card p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding: .8rem .8rem .8rem 3.1rem;
+      margin: .55rem 0;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: .85rem;
+      top: .75rem;
+      width: 1.65rem;
+      height: 1.65rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .family-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .family-card {
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--blue-light);
+    }
+
+    .family-card h3 { color: #234d74; }
+
+    .resources {
+      padding: 1.4rem;
+      background: #f1f5f5;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+
+    .resources li { margin-bottom: .65rem; }
+    footer {
+      padding: 2rem 1.25rem;
+      background: #173042;
+      color: #edf5f5;
+      text-align: center;
+    }
+    footer p { max-width: 850px; margin: .5rem auto; }
+    footer a { color: #c6eee2; }
+
+    @media (max-width: 850px) {
+      .three-col, .family-grid { grid-template-columns: 1fr; }
+      .definition { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      main { width: min(100% - 1.25rem, 1120px); }
+      .hero { padding: 3rem 1rem 2.6rem; }
+      .strategy-grid { grid-template-columns: 1fr; }
+      nav { position: static; }
+      .nav-inner { gap: .25rem .8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">A practical guide for educators and families</p>
+      <h1>Growing Together</h1>
+      <p>Social-emotional learning helps children understand themselves, build relationships, manage feelings, and make thoughtful choices. These skills grow over time—and caring adults can help children practice them every day.</p>
+      <div class="hero-note">
+        <strong>Start with connection.</strong> A child who feels safe, respected, and understood is better positioned to learn and practice social-emotional skills.
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Page navigation">
+    <div class="nav-inner">
+      <a href="#why-sel">Why SEL?</a>
+      <a href="#development">Development</a>
+      <a href="#stages">Three stages</a>
+      <a href="#regulation">Self-regulation</a>
+      <a href="#families">At home</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="why-sel">
+      <h2>Why social-emotional learning matters</h2>
+      <p class="section-intro">Social-emotional learning (SEL) is the ongoing process of developing skills to understand and manage emotions, show empathy, maintain supportive relationships, and make caring, responsible decisions. These skills support participation in learning, peer relationships, and well-being.</p>
+      <div class="callout">
+        <strong>SEL is teachable.</strong> Children learn through direct instruction, adult modeling, play, discussion, practice, and relationships. SEL is not a demand that children stay calm all the time; it is support for noticing feelings, asking for help, and choosing a next step.
+      </div>
+    </section>
+
+    <section id="development">
+      <h2>How early experiences can shape later development</h2>
+      <p>Development starts before birth and continues through adolescence. Prenatal health and care—including access to health care and support for a pregnant person’s physical and mental health—are part of the conditions that can influence a child’s early development. Research also links prenatal stress and perinatal depression or anxiety with later developmental outcomes at a group level.</p>
+      <p>After birth, responsive caregiving, safe and stable relationships, opportunities to play and communicate, and access to needed supports help children develop trust, emotional understanding, and coping skills. Persistent adversity or stress can make regulation and relationships more challenging for some children. These are influences, not predictions: children develop differently, and supportive relationships and appropriate supports can strengthen well-being at every age.</p>
+      <div class="callout warm">
+        <strong>Use a strengths-based lens.</strong> Do not blame a child or family for developmental differences or stressors. Offer respectful partnership, practical support, and referrals when a family wants them.
+      </div>
+    </section>
+
+    <section id="stages">
+      <h2>Three developmental stages: milestones and classroom practice</h2>
+      <p class="section-intro">Milestones are guideposts, not a scorecard. Children may show skills at different times, and culture, language, disability, temperament, and experience all matter. Observe each child over time and partner with caregivers when concerns arise.</p>
+
+      <div class="three-col">
+        <article class="stage-card early">
+          <header>
+            <span class="age">About ages 3–5</span>
+            <h3>Early childhood</h3>
+            <p>Belonging, play, emotion words, and learning with others</p>
+          </header>
+          <div class="body">
+            <span class="label">Examples of social-emotional milestones</span>
+            <ul>
+              <li>Notices other children and may join their play.</li>
+              <li>Begins taking turns and following simple game rules with support.</li>
+              <li>Shows growing independence and can take part in simple routines or chores.</li>
+              <li>Begins to name feelings and may need an adult’s help to calm down or solve a conflict.</li>
+            </ul>
+
+            <span class="label">Two classroom activities</span>
+            <div class="strategy-grid">
+              <div class="strategy-card">
+                <h4>Feelings faces and stories</h4>
+                <p>Read a picture book, pause to notice characters’ faces and body clues, then invite children to name or point to a feeling. Accept words, gestures, pictures, or communication devices.</p>
+              </div>
+              <div class="strategy-card">
+                <h4>Cooperative play challenge</h4>
+                <p>Invite pairs or small groups to build a shared structure or complete a simple art project. Model phrases such as “Can I have a turn?” and “Let’s make a plan.”</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage-card middle">
+          <header>
+            <span class="age">About ages 6–11</span>
+            <h3>Middle childhood</h3>
+            <p>Friendships, perspective-taking, confidence, and problem-solving</p>
+          </header>
+          <div class="body">
+            <span class="label">Examples of social-emotional milestones</span>
+            <ul>
+              <li>Builds stronger, more complex friendships and increasingly values peer belonging.</li>
+              <li>Develops a stronger sense of responsibility and independence.</li>
+              <li>Can increasingly recognize different perspectives and discuss fairness, while still needing help with conflicts.</li>
+              <li>Practices managing frustration, waiting, and adjusting to group expectations; these skills are still developing.</li>
+            </ul>
+
+            <span class="label">Two classroom activities</span>
+            <div class="strategy-grid">
+              <div class="strategy-card">
+                <h4>Class meeting and problem-solving circle</h4>
+                <p>Use a predictable meeting to discuss a shared classroom challenge. Students practice listening, stating needs respectfully, and agreeing on one achievable next step.</p>
+              </div>
+              <div class="strategy-card">
+                <h4>Teamwork reflection</h4>
+                <p>After a partner task, ask: “What helped us work together?” and “What could we try next time?” Let students respond verbally, in writing, or with a visual scale.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage-card teen">
+          <header>
+            <span class="age">About ages 12–18</span>
+            <h3>Adolescence</h3>
+            <p>Identity, agency, belonging, and increasingly independent decisions</p>
+          </header>
+          <div class="body">
+            <span class="label">Examples of social-emotional milestones</span>
+            <ul>
+              <li>Explores identity, values, interests, and future goals.</li>
+              <li>Often seeks greater independence and may place increased importance on peer relationships.</li>
+              <li>Experiences a wide range of emotions and may be learning to manage overlapping or intense feelings.</li>
+              <li>Develops more complex reflection and decision-making skills, while still benefiting from trusted adults and support.</li>
+            </ul>
+
+            <span class="label">Two classroom activities</span>
+            <div class="strategy-grid">
+              <div class="strategy-card">
+                <h4>Values-to-action reflection</h4>
+                <p>Students privately identify values that matter to them, then choose a school or community goal that reflects one value. Sharing is optional; protect privacy and avoid forced disclosure.</p>
+              </div>
+              <div class="strategy-card">
+                <h4>Scenario-based decision practice</h4>
+                <p>Use a fictional peer or online scenario. Students identify choices, possible outcomes, who could help, and a response aligned with safety and personal values.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="regulation">
+      <h2>Self-regulation: what it is and how to support it</h2>
+      <div class="definition">
+        <div class="panel">
+          <h3>A practical definition</h3>
+          <p><strong>Self-regulation</strong> is the developing ability to notice and manage feelings, attention, thoughts, and behavior in ways that fit a situation and support a goal. It does not mean suppressing emotion or always sitting still. Children often need adults to co-regulate with them before they can use a strategy independently.</p>
+        </div>
+        <div class="panel">
+          <h3>What it can look like</h3>
+          <ul>
+            <li>A student notices, “I’m getting frustrated,” and asks for help.</li>
+            <li>A child uses a break card, movement break, or quiet space and then returns when ready.</li>
+            <li>A student pauses before responding to a disagreement and tries a respectful phrase.</li>
+            <li>A learner uses a visual checklist to begin and complete a task.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.6rem;">Three ways teachers can model and encourage regulation</h3>
+      <ol class="steps">
+        <li><strong>Think aloud and name your own strategy.</strong> For example: “I’m feeling rushed, so I’m going to take one slow breath, check my list, and do the first step.” Model calm repair when you make a mistake.</li>
+        <li><strong>Teach and rehearse tools when students are calm.</strong> Practice emotion words, breathing, stretching, asking for help, using a break signal, and choosing a next step. Offer more than one option; not every strategy works for every child.</li>
+        <li><strong>Design the classroom to reduce avoidable stress.</strong> Use predictable routines, visual directions, clear transitions, brief directions, movement opportunities, positive feedback, and access to a quiet or low-stimulation space.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>When a child is dysregulated:</strong> Prioritize safety and connection over correction. Use a calm voice, few words, and a non-threatening posture. Reduce demands and stimulation when possible; offer space and two simple choices. Avoid arguing, shaming, or requiring the child to explain while highly upset. When the child is calm, reconnect, identify what helped, practice a replacement skill, and plan for next time. Follow the student’s support plan and school safety procedures.
+      </div>
+
+      <p><strong>For children with ADHD or other learning and developmental differences:</strong> Regulation challenges are not automatically willful misbehavior. Individualize supports with the student and family, use consistent cues and positive reinforcement, make movement and sensory options available, and coordinate with the school support team. Do not assume that one strategy works for every child.</p>
+    </section>
+
+    <section id="families">
+      <h2>Partnering with families: ideas to try at home</h2>
+      <p class="section-intro">Invite families to adapt strategies to their language, culture, routines, resources, and child’s preferences. Share what works at school and ask caregivers what helps at home.</p>
+
+      <div class="family-grid">
+        <article class="family-card">
+          <h3>Early childhood</h3>
+          <ul>
+            <li>Name feelings during everyday moments: “You look disappointed that playtime ended.”</li>
+            <li>Use simple picture books, pretend play, and puppets to act out asking for a turn or getting help.</li>
+            <li>Keep routines predictable where possible; give a brief warning before transitions.</li>
+            <li>Offer two manageable choices and notice effort: “You were upset and came to sit with me.”</li>
+          </ul>
+        </article>
+        <article class="family-card">
+          <h3>Middle childhood</h3>
+          <ul>
+            <li>Make time for a low-pressure daily check-in; listening can come before problem-solving.</li>
+            <li>Practice a short plan for tough moments: notice the feeling, choose a tool, and decide what to do next.</li>
+            <li>Let the child help with age-appropriate responsibilities and reflect on what went well.</li>
+            <li>Talk through friendship conflicts by considering each person’s perspective and possible repair.</li>
+          </ul>
+        </article>
+        <article class="family-card">
+          <h3>Adolescence</h3>
+          <ul>
+            <li>Listen without immediately judging or fixing; ask, “Would you like advice, help brainstorming, or just someone to listen?”</li>
+            <li>Support privacy and growing independence while maintaining clear, caring safety boundaries.</li>
+            <li>Encourage healthy ways to manage stress—movement, rest, creative activities, time with supportive people, or a trusted adult.</li>
+            <li>Discuss decisions using values, safety, likely outcomes, and available support rather than relying only on lectures.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="callout warm" style="margin-top:1rem;">
+        <strong>When families have concerns:</strong> Encourage them to talk with the child’s health care provider or school support team. Developmental milestones are not diagnostic tools. A family’s questions deserve respectful attention and, when appropriate, professional screening or evaluation.
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>Resources for learning more</h2>
+      <div class="resources">
+        <ul>
+          <li><a href="https://casel.org/fundamentals-of-sel/what--is-the-casel-framework/" target="_blank" rel="noopener noreferrer">CASEL: What Is the CASEL Framework?</a> — SEL competencies and classroom approaches.</li>
+          <li><a href="https://casel.org/systemic-implementation/sel-in-the-classroom/" target="_blank" rel="noopener noreferrer">CASEL: SEL in the Classroom</a> — supportive classroom environments and explicit SEL practice.</li>
+          <li><a href="https://developingchild.harvard.edu/resource-guides/guide-mental-health/" target="_blank" rel="noopener noreferrer">Harvard Center on the Developing Child: A Guide to Mental Health</a> — early experiences, relationships, and lifelong mental health.</li>
+          <li><a href="https://www.cdc.gov/act-early/milestones/5-years.html" target="_blank" rel="noopener noreferrer">CDC: Milestones by 5 Years</a> — developmental milestone examples and guidance.</li>
+          <li><a href="https://stacks.cdc.gov/view/cdc/155269/cdc_155269_DS1.pdf" target="_blank" rel="noopener noreferrer">CDC: Positive Parenting Tips for Healthy Child Development</a> — including middle-childhood social and emotional development.</li>
+          <li><a href="https://www.cdc.gov/parenting-teens/tips-understanding-and-adapting/index.html" target="_blank" rel="noopener noreferrer">CDC: Tips for Understanding and Adapting to the Teen Years</a> — social and emotional changes during adolescence.</li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7490743/" target="_blank" rel="noopener noreferrer">Systematic review and meta-analysis: Perinatal depression and anxiety and child development</a> — research on associations across childhood and adolescence.</li>
+        </ul>
+        <p><small>Educational information only; it does not replace individualized developmental, mental-health, or medical guidance. Milestones are examples of common developmental skills, not a checklist for diagnosing a child.</small></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Growing Together</strong> — small moments of safety, connection, practice, and encouragement help social-emotional skills grow.</p>
+    <p>Designed as an adaptable resource for educators and families. Adjust activities for students’ ages, abilities, cultures, languages, and individual support needs.</p>
+  </footer>
+</body>
+</html>
